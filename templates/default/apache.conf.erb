@@ -1,0 +1,8 @@
+  Alias <%= @approot %>/static/ <%= @appdir %>/current/backend/static/
+  ProxyPass           <%= @approot %>/static !
+  ProxyPass           <%= @approot %> http://localhost:8092
+  ProxyPassReverse    <%= @approot %> http://localhost:8092
+  <Directory <%= @appdir %>/current/backend/static>
+    Order deny,allow
+    Allow from all
+  </Directory>

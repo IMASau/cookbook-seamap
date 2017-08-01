@@ -1,0 +1,65 @@
+DEBUG = <%= @debug ? "True" : "False" %>
+
+SECRET_KEY = '<%= @secret_key %>'
+
+DATABASES = {
+    'default': {
+        'NAME': '<%= @database[:settings][:database] %>',
+        'ENGINE': '<%= @database[:settings][:adapter] %>',
+        'USER': '<%= @database[:settings][:username] %>',
+        'PASSWORD': '<%= @database[:settings][:password] %>',
+        'HOST': '<%= @database[:host] %>',
+        'PORT': '<%= @database[:settings][:port]  %>',
+        'OPTIONS': {
+            'extra_params': 'TDS_VERSION=8.0',
+            'unicode_results': True
+        }
+    },
+}
+# Ergly; but for development we use two connections for convenience,
+# but only one in production and the chef cookbook marks multiple dbs
+# hard anyway.
+DATABASES['transects'] = DATABASES['default']
+
+ALLOWED_HOSTS = [
+<% @allowed_hosts.each do |host| %>
+  '<%= host %>',
+<% end %>
+]
+
+CORS_ORIGIN_WHITELIST = ALLOWED_HOSTS
+
+USE_X_FORWARDED_HOST = True
+FORCE_SCRIPT_NAME = '<%= @rootpath %>'
+URL_ROOT = FORCE_SCRIPT_NAME
+
+ADMINS = <%= @admins %>
+
+STATIC_URL = URL_ROOT + '/static/'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'imas': {
+            'handlers': ['console'],
+            'propagate': True,
+            'level': 'DEBUG',
+        },
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+}
+
+if not DEBUG:
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+
+
