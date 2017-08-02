@@ -27,7 +27,11 @@ ALLOWED_HOSTS = [
 <% end %>
 ]
 
-CORS_ORIGIN_WHITELIST = ALLOWED_HOSTS
+CORS_ORIGIN_WHITELIST = [
+<% @cors_whitelist.each do |host| %>
+  '<%= host %>',
+<% end %>
+]
 
 USE_X_FORWARDED_HOST = True
 FORCE_SCRIPT_NAME = '<%= @rootpath %>'

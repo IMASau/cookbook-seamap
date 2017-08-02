@@ -24,6 +24,7 @@ emailhost     = node['seamap']['email']['emailhost']
 repository    = node['seamap']['repository']
 secret_key    = node['seamap']['secret_key']
 urlroot       = node['seamap']['urlroot']
+whitelist     = node['seamap']['cors_whitelist'] || []
 
 seamap_repository = Chef::DataBagItem.load('repositories', repository)
 deploy_key_name   = seamap_repository['deploy_key']
@@ -34,12 +35,13 @@ directory "/mnt/ebs/#{appdir}/shared"
 directory "/mnt/ebs/#{appdir}/media"
 
 local_settings = {
-  :rootpath      => urlroot,
-  :emailhost     => emailhost,
-  :admins        => admins,
-  :emailfrom     => emailfrom,
-  :allowed_hosts => allowed_hosts,
-  :secret_key    => secret_key
+  :rootpath       => urlroot,
+  :emailhost      => emailhost,
+  :admins         => admins,
+  :emailfrom      => emailfrom,
+  :allowed_hosts  => allowed_hosts,
+  :cors_whitelist => whitelist,
+  :secret_key     => secret_key
 }
 
 application 'Seamap' do
