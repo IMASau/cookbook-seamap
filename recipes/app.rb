@@ -78,6 +78,13 @@ application 'Seamap' do
 end
 
 
+# Need freetds configured:
+cookbook_file '/etc/odbcinst.ini' do
+  source 'odbcinst.ini'
+  mode '644'
+  owner 'root'
+end
+
 # Configure Apache:
 template "/mnt/ebs/#{appdir}/shared/apache.conf" do
   source "apache.conf.erb"
