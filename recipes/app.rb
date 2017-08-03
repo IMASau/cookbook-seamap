@@ -64,6 +64,7 @@ application 'Seamap' do
       username database['username']
       password database['password']
       host     database['host']
+      port     database['port']
     end
   end
 
