@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: imas_seamap
-# Recipe:: app
+# Recipe:: api
 #
 # Copyright 2017, IMAS
 #
