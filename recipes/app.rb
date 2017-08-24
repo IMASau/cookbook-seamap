@@ -16,7 +16,6 @@ base_dir = node['seamap']['client']['deploydir']
 
 remote_directory base_dir do
   source 'frontend' # symlink the seamap frontend resources/public directory to <cookbook>/files/default/frontend
-  cookbook 'seamap-files'
   mode '0755'
   files_mode '0444'
 end
