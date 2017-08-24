@@ -18,6 +18,7 @@ version '0.1.0'
 #
 # source_url 'https://github.com/<insert_org_here>/imas_seamap' if respond_to?(:source_url)
 
-depends 'apache2'
+depends 'apache2', '~> 3.0'
 depends 'application'
 depends 'application_python'
+depends 'seamap-files'
