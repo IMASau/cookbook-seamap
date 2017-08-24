@@ -4,4 +4,4 @@ default['seamap']['dbname']             = 'seamap'
 default['seamap']['email']['emailhost'] = 'postoffice.utas.edu.au'
 default['seamap']['repository']         = 'seamap'
 
-default['seamap']['client']['deploydir'] = '/var/www/seamap' # fully-qualified directory for static-files install
+default['seamap']['client']['deploydir'] = '/var/www/app' # fully-qualified directory for static-files install
