@@ -10,7 +10,7 @@
 include_recipe 'application'
 include_recipe 'apache2'
 
-['tdsodbc', 'unixodbc-dev', 'python-dev'].each{ |p| package p }
+['tdsodbc', 'unixodbc-dev', 'python-dev', 'libgeos-c1'].each{ |p| package p }
 
 # Must specify the secret key parameter:
 raise unless node['seamap']['secret_key']
