@@ -74,6 +74,7 @@ application 'Seamap' do
     virtualenv "/mnt/ebs/#{appdir}/shared/env"
     autostart true
     preload_app true
+    timeout 600                 # Handle large shapefile generation
     port 8092
   end
 end
